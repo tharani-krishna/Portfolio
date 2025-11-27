@@ -1,0 +1,653 @@
+/* ------------------------------------------------------------------- */
+/* 1. CSS VARIABLES (Color Palette) */
+/* ------------------------------------------------------------------- */
+:root {
+    /* Color Palette: Dark Theme with Electric Blue Accent */
+    --color-bg-primary: #1A1A2E; /* Deep Charcoal Grey */
+    --color-bg-secondary: #2C394B; /* Lighter Grey for cards/sections */
+    --color-text-primary: #EBEBEB; /* Crisp White */
+    --color-accent: #00ADB5; /* Vibrant Electric Blue */
+    --color-accent-hover: #3EE0E6; /* Lighter Blue for hover */
+    --color-error: #FF6B6B;
+    
+    /* Typography */
+    --font-family-primary: 'Poppins', sans-serif;
+}
+
+/* ------------------------------------------------------------------- */
+/* 2. Base Styles & Reset */
+/* ------------------------------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family-primary);
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+a {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--color-accent-hover);
+}
+
+ul {
+    list-style: none;
+}
+
+/* Reusable Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section {
+    padding: 80px 0;
+}
+
+.dark-section {
+    background-color: var(--color-bg-secondary);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 60px;
+    color: var(--color-accent-hover);
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--color-accent);
+    margin: 10px auto 0;
+}
+
+/* Card Style for Sections */
+.card {
+    background-color: var(--color-bg-secondary);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* CTA Buttons */
+.cta-button, .primary-cta, .secondary-cta {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: background-color 0.3s, transform 0.15s;
+    border: none;
+    cursor: pointer;
+}
+
+.cta-button, .primary-cta {
+    background-color: var(--color-accent);
+    color: var(--color-bg-primary); /* Dark text on bright accent */
+}
+
+.cta-button:hover, .primary-cta:hover {
+    background-color: var(--color-accent-hover);
+    transform: translateY(-2px);
+}
+
+.secondary-cta {
+    background-color: transparent;
+    border: 2px solid var(--color-accent);
+    color: var(--color-accent);
+    margin-left: 15px;
+}
+
+.secondary-cta:hover {
+    background-color: var(--color-accent);
+    color: var(--color-bg-primary);
+    transform: translateY(-2px);
+}
+
+/* ------------------------------------------------------------------- */
+/* 3. Header/Navigation */
+/* ------------------------------------------------------------------- */
+#header {
+    background-color: transparent;
+    color: var(--color-text-primary);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.4s, box-shadow 0.4s;
+    padding: 15px 0;
+}
+
+#header.sticky {
+    background-color: rgba(26, 26, 46, 0.95); /* Semi-transparent background */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+}
+
+#header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-accent);
+}
+
+#header nav ul {
+    display: flex;
+}
+
+#header nav ul li {
+    margin: 0 15px;
+}
+
+#header nav ul li a {
+    color: var(--color-text-primary);
+    font-weight: 400;
+    text-transform: uppercase;
+    position: relative;
+    padding: 5px 0;
+}
+
+#header nav ul li a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: var(--color-accent);
+    transition: width 0.3s;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+}
+
+#header nav ul li a:hover::after,
+#header nav ul li a.active::after {
+    width: 100%;
+}
+
+/* ------------------------------------------------------------------- */
+/* 4. Hero Section */
+/* ------------------------------------------------------------------- */
+#hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 80px; /* Account for fixed header */
+}
+
+#hero .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.greeting {
+    font-size: 1.2rem;
+    color: var(--color-accent);
+    margin-bottom: 5px;
+}
+
+.animated-text {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    min-height: 50px; /* Prevent layout shift during typing */
+}
+
+.subtitle {
+    font-size: 1.4rem;
+    color: rgba(235, 235, 235, 0.8);
+    margin-bottom: 30px;
+}
+
+.cta-group {
+    display: flex;
+    gap: 20px;
+}
+
+.profile-photo {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%; /* Circle crop */
+    background-size: cover;
+    background-position: center;
+    border: 5px solid var(--color-accent);
+    box-shadow: 0 0 20px rgba(0, 173, 181, 0.4);
+}
+
+/* ------------------------------------------------------------------- */
+/* 5. About Me */
+/* ------------------------------------------------------------------- */
+#about p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.education {
+    padding: 20px;
+    border-left: 4px solid var(--color-accent);
+    background-color: var(--color-bg-secondary);
+    border-radius: 4px;
+}
+.education h3 {
+    color: var(--color-accent-hover);
+    margin-bottom: 5px;
+}
+
+/* ------------------------------------------------------------------- */
+/* 6. Skills */
+/* ------------------------------------------------------------------- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.skill-category {
+    padding: 20px;
+    background-color: var(--color-bg-primary);
+    border-radius: 8px;
+    border-top: 4px solid var(--color-accent);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.skill-category h3 {
+    color: var(--color-accent);
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+}
+
+.skill-category h3 i {
+    margin-right: 10px;
+}
+
+.skill-category ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-category li {
+    background-color: var(--color-bg-secondary);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    font-weight: 300;
+}
+
+
+/* ------------------------------------------------------------------- */
+/* 7. Experience (Timeline) */
+/* ------------------------------------------------------------------- */
+.timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background-color: var(--color-bg-secondary);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px;
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+}
+
+.timeline-dot {
+    height: 15px;
+    width: 15px;
+    background-color: var(--color-accent);
+    position: absolute;
+    border-radius: 50%;
+    z-index: 1;
+    top: 30px;
+}
+
+.timeline-item:nth-child(odd) .timeline-dot {
+    right: -7.5px;
+}
+
+.timeline-item:nth-child(even) .timeline-dot {
+    left: -7.5px;
+}
+
+.timeline-content {
+    padding: 20px;
+    background-color: var(--color-bg-secondary);
+    border: 1px solid rgba(0, 173, 181, 0.1);
+    position: relative;
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+    text-align: right;
+}
+
+.timeline-content h3 {
+    color: var(--color-accent);
+    margin-bottom: 5px;
+    font-size: 1.3rem;
+}
+
+.timeline-content .company {
+    font-weight: 400;
+    color: var(--color-text-primary);
+}
+
+.timeline-content .dates {
+    display: block;
+    font-size: 0.9rem;
+    color: rgba(235, 235, 235, 0.6);
+    margin-bottom: 10px;
+}
+
+.timeline-content ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+.timeline-item:nth-child(odd) .timeline-content ul {
+    list-style-position: inside;
+    padding-left: 0;
+}
+/* Arrow for Timeline Items */
+.timeline-content::after {
+    content: ' ';
+    position: absolute;
+    top: 25px;
+    border-style: solid;
+}
+
+.timeline-item:nth-child(odd) .timeline-content::after {
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent var(--color-bg-secondary);
+    right: -10px;
+}
+
+.timeline-item:nth-child(even) .timeline-content::after {
+    border-width: 10px 10px 10px 0;
+    border-color: transparent var(--color-bg-secondary) transparent transparent;
+    left: -10px;
+}
+
+
+/* ------------------------------------------------------------------- */
+/* 8. Projects */
+/* ------------------------------------------------------------------- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.project-card {
+    border-top: 4px solid var(--color-accent);
+}
+
+.project-card h3 {
+    color: var(--color-accent-hover);
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
+
+.project-links {
+    margin-top: 15px;
+    display: flex;
+    gap: 15px;
+}
+
+.project-link {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.project-link i {
+    margin-right: 5px;
+}
+
+.more-projects-cta {
+    text-align: center;
+}
+
+/* ------------------------------------------------------------------- */
+/* 9. Contact */
+/* ------------------------------------------------------------------- */
+.contact-text {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+}
+
+#contact-form {
+    max-width: 600px;
+    margin: 0 auto 40px;
+    padding: 30px;
+    background-color: var(--color-bg-secondary);
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+#contact-form input[type="text"],
+#contact-form input[type="email"],
+#contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--color-bg-primary);
+    border: 1px solid var(--color-bg-secondary);
+    color: var(--color-text-primary);
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+}
+
+#contact-form textarea {
+    resize: vertical;
+}
+
+#form-message {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#form-message.success {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#form-message.error {
+    background-color: var(--color-error);
+    color: white;
+}
+
+.hidden {
+    display: none;
+}
+
+.social-links {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.social-links a {
+    margin: 0 15px;
+    color: var(--color-text-primary);
+    transition: color 0.3s, transform 0.3s;
+}
+
+.social-links a:hover {
+    color: var(--color-accent);
+    transform: scale(1.1);
+}
+
+/* ------------------------------------------------------------------- */
+/* 10. Footer */
+/* ------------------------------------------------------------------- */
+footer {
+    background-color: var(--color-bg-primary);
+    padding: 20px 0;
+    text-align: center;
+    border-top: 1px solid var(--color-bg-secondary);
+    font-size: 0.9rem;
+    color: rgba(235, 235, 235, 0.7);
+}
+
+
+/* ------------------------------------------------------------------- */
+/* 11. Responsiveness (Mobile First) */
+/* ------------------------------------------------------------------- */
+@media (max-width: 768px) {
+    .logo {
+        font-size: 1.3rem;
+    }
+
+    #header .container {
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    #header nav {
+        display: none; /* Hide nav on small screens, can implement a burger menu later */
+    }
+
+    #header .cta-button {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+    
+    #hero {
+        padding-top: 100px;
+        min-height: auto;
+    }
+
+    #hero .container {
+        flex-direction: column-reverse; /* Image on top */
+        text-align: center;
+        padding-top: 40px;
+    }
+
+    .hero-image {
+        margin-bottom: 30px;
+    }
+
+    .animated-text {
+        font-size: 2.5rem;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+    }
+
+    .cta-group {
+        justify-content: center;
+    }
+
+    .secondary-cta {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .section {
+        padding: 50px 0;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+    
+    /* Timeline Adjustments for Mobile */
+    .timeline::after {
+        left: 31px; /* Move line to the left */
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+        left: 0 !important;
+    }
+
+    .timeline-item:nth-child(even) .timeline-dot,
+    .timeline-item:nth-child(odd) .timeline-dot {
+        left: 24px;
+        right: auto;
+    }
+
+    .timeline-item:nth-child(even) .timeline-content::after,
+    .timeline-item:nth-child(odd) .timeline-content::after {
+        border-width: 10px 10px 10px 0;
+        border-color: transparent var(--color-bg-secondary) transparent transparent;
+        left: -10px;
+        right: auto;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-content {
+        text-align: left;
+    }
+}
