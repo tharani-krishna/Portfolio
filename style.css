@@ -236,7 +236,7 @@ ul {
     gap: 20px;
 }
 
-/* Corrected: Styling for the direct <img> element */
+/* Styling for the direct <img> element (profile-photo-img) */
 .profile-photo-img {
     width: 300px;
     height: 300px;
